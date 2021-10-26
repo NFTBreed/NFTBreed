@@ -173,7 +173,7 @@ contract NFTBreed is ERC721URIStorage, Ownable {
     }
     
     mapping(uint256 => Genome) private creatureGenome;
-    address payable private fundAddress;
+    address private fundAddress = 0x000000000000000000000000000000000000dEaD;
     uint256 private minBuy = 0;
     
     event NFTMinted(address owner, uint newItemId);
@@ -207,7 +207,7 @@ contract NFTBreed is ERC721URIStorage, Ownable {
         require(createGenome(attack, defense, speed, affection, instinct, brave, smart, health, newItemId));
         mintNFT(recipient, tokenURI, newItemId);
         
-        fundAddress.transfer(bnbAmountSent);
+        payable(fundAddress).transfer(bnbAmountSent);
         
         emit NFTMinted(recipient, newItemId);
         
@@ -248,11 +248,15 @@ contract NFTBreed is ERC721URIStorage, Ownable {
         minBuy = _minBuy;
     }
     
-    function setFundAddress(address payable _fundAddress) external onlyOwner() {
+    function getDetails() external view onlyOwner() returns(address _fundaddress, uint256 _minbuy) {
+        return (fundAddress, minBuy);
+    }
+    
+    function setFundAddress(address _fundAddress) external onlyOwner() {
         fundAddress = _fundAddress;
     }
     
-    function getFundAddress() external view onlyOwner() returns(address payable) {
+    function getFundAddress() external view onlyOwner() returns(address) {
         return fundAddress;
     }
     

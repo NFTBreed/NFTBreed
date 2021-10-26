@@ -1,3 +1,8 @@
+# Don't track content of these folders
+node_modules/
+.idea/
+.env
+
 # Build and Release Folders
 bin-debug/
 bin-release/
