@@ -7,7 +7,7 @@ require("@nomiclabs/hardhat-etherscan");
 const { API_URL, PRIVATE_KEY, API_URL_MAINNET, PRIVATE_KEY_MAINNET, ETHERSCAN_API_KEY, DEPLOYER_URL_MAINNET, DEPLOYER_URL_TESTNET } = process.env;
 module.exports = {
 	solidity: {
-		version: "0.8.6",
+		version: "0.8.9",
 		settings: {
 			optimizer: {
 				enabled: true
@@ -47,6 +47,10 @@ module.exports = {
 // compile -> npx hardhat compile 
 // deploy -> npx hardhat run scripts/deploy.js --network testnet
 // verif -> npx hardhat verify --network testnet 0x4468f1f0204C4bd705F1573607ebDCF16600A2Ad
+/*
+	Verif with two params
+	npx hardhat verify --network testnet 0xf1235d98034576e5Af4342E7131924F210dEE2d9 "16" "0x2925194bCd12620e09c5A072b9e33a03541B44a4"
+ */
 /* 
 Verif with contract who have argument 
 -> npx hardhat verify --network mainnet DEPLOYED_CONTRACT_ADDRESS "Constructor argument 1"
